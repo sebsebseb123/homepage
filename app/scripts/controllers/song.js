@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sebsebseb123comApp')
-  .controller('SongctrlCtrl', function ($scope) {
+  .controller('SongCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
