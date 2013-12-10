@@ -1,10 +1,7 @@
 'use strict';
 
 angular.module('sebsebseb123comApp')
-  .controller('SongsCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+.controller('SongsCtrl', function ($scope, songService) {
+  // Use our song service to get our list of songs.
+  $scope.songs = songService.getSongs();
+});

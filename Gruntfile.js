@@ -96,7 +96,8 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        reporter: require('jshint-stylish'),
+        ignores: ['app/scripts/_config.js']
       },
       all: [
         'Gruntfile.js',
@@ -358,20 +359,20 @@ module.exports = function (grunt) {
       },
 
       // targets
-      development: [{
-        dest: '<%= yeoman.app %>/scripts/config.js',
-        wrap: '"use strict";\n\n <%= __ngModule %>',
+      dev: [{
+        dest: '<%= yeoman.app %>/scripts/_config.js',
+        wrap: '\'use strict\';' + '\n\n<%= __ngModule %>',
         name: 'config',
         constants: {
-          ENV: 'development'
+          API_ENDPOINT: 'http://dev-sebsebseb123-homepage.gotpantheon.com/'
         }
       }],
-      production: [{
-        dest: '<%= yeoman.dist %>/scripts/config.js',
-        wrap: '"use strict";\n\n <%= __ngModule %>',
+      live: [{
+        dest: '<%= yeoman.dist %>/scripts/_config.js',
+        wrap: '\'use strict\';' + '\n\n<%= __ngModule %>',
         name: 'config',
         constants: {
-          ENV: 'production'
+          API_ENDPOINT: 'http://live-sebsebseb123-homepage.gotpantheon.com/'
         }
       }]
     }
@@ -387,7 +388,7 @@ module.exports = function (grunt) {
       'clean:server',
       'concurrent:server',
       'autoprefixer',
-      'ngconstant:development',
+      'ngconstant:dev',
       'connect:livereload',
       'watch'
     ]);
@@ -408,7 +409,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'ngconstant:production',
+    'ngconstant:live',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
